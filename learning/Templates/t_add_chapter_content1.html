@@ -1,0 +1,104 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD CHAPTER CONTENT</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+       <style>
+          .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+
+  input[type=text], select{
+  width: 30%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight:bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+ input[type=file]{
+  width: 30%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight:bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+textarea {
+  width: 30%;
+  height: 30%;
+  padding: 12px;
+  font-size: 20px;
+  font-weight:bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+    </style>
+
+
+</head>
+<body class= "pic" style="font-weight:bold;">
+<div align="center">
+<form method="post" action="{% url 't_add_chapter_content' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1 style="margin-top:50px;">ADD CHAPTER CONTENT</h1>
+                <select name="ch_tit1" required>
+                    <option value="Nil" selected>Select chapter</option>
+                    {% for i in kk %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <label>Upload content</label><br><br>
+                <input type="file" size="17" placeholder="Attach course content" name="up_c" required><br><br><br>
+                <label>Enter text content</label><br><br>
+                <textarea cols="100" rows="23" name="tex_con"></textarea> <br><br><br>
+                <label>Required time to finish in seconds</label><br><br>
+                <input type="text" name="time" required><br><br><br>
+    <label>Paid/Free?</label><br><br>
+    <input type="radio"  id="w" name="s1" value="True">
+    <label for="w">Paid</label><br><br>
+    <input type="radio"  id="q" name="s1" value="False">
+    <label for="q">Free</label><br><br>
+    <label>............................</label><br><br>
+
+
+    <label>Supplimentary/Mandatory?</label><br><br>
+    <input type="radio"  id="one1" name="s" value="False">
+    <label for="one1">Supplementary</label><br><br>
+    <input type="radio"  id="two1" name="s" value="True">
+    <label for="two1">Mandatory</label><br><br>
+    <label>............................</label><br><br>
+
+     <label>Is uploaded content image/text/video?</label><br><br>
+    <input type="radio"  id="one" name="cont_typ" value="1">
+    <label for="one">Image</label><br><br>
+    <input type="radio"  id="two" name="cont_typ" value="2">
+    <label for="two">Text</label><br><br>
+    <input type="radio"  id="three" name="cont_typ" value="3">
+    <label for="three">Video</label><br><br>
+    <label>............................</label><br><br>
+        <input type="submit" class="btn" name="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp
+        <input type="reset" class="btn" name="cancel" value="Cancel">
+</form>
+</div>
+<div align="center">
+   <button type="submit" class="bttn" onclick="location.href='{% url 't_content' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

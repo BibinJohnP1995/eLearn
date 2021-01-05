@@ -1,0 +1,113 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content edit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+     <style>
+          .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+
+  input[type=text], select{
+  width: 30%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight:bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+ input[type=file]{
+  width: 30%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight:bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+textarea {
+  width: 30%;
+  height: 30%;
+  padding: 12px;
+  font-size: 20px;
+  font-weight:bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+label {
+font-size:20px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+<body class= "pic">
+<div align="center">
+<form method="post" action="{% url 'edit_content_ad' id=gh1.id %}">
+    {% csrf_token %}
+    <h3><b>CHAPTER CONTENT EDIT</b></h3>
+    <label>Subject title</label><br><br>
+    <input type="text" value="{{gh1.Subject_title}}" name="sub"><br><br>
+    <label>Course name</label><br><br>
+    <input type="text" value="{{gh1.Course_title}}" name="cou"><br><br>
+    <label>Course chapter name</label><br><br>
+    <input type="text" value="{{gh1.Chapter_title}}" name="c_n"><br><br>
+    <label>Text content</label><br><br>
+    <textarea cols="70" rows="9" name="textt">{{gh1.Chapter_text_content}}</textarea><br><br>
+    <label>Required time to finish in seconds</label><br><br>
+    <input type="text" value="{{gh1.Chapter_Content_Time_required_in_sec}}" name="time"><br><br>
+
+    <label>Paid/Free</label><br><br>
+    {% if gh1.Chapter_Content_Is_open_for_free == 0 %}
+    <input type="radio"  id="w" name="s1" value="True">
+    <label for="w">Paid</label><br>
+    <input type="radio"  id="q" name="s1" value="False" checked>
+    <label for="q">Free</label><br><br>
+    {% endif %}
+    {% if gh1.Chapter_Content_Is_open_for_free == 1 %}
+    <input type="radio"  id="w" name="s1" value="True" checked>
+    <label for="w">Paid</label><br>
+    <input type="radio"  id="q" name="s1" value="False">
+    <label for="q">Free</label><br><br>
+    {% endif %}
+     <label>............................</label><br><br>
+    <label>Supplimentary/Mandatory?</label><br><br>
+    {% if gh1.Chapter_Content_Is_mandatory == 1 %}
+    <input type="radio"  id="one1" name="s" value="False">
+    <label for="one1">Supplementary</label><br>
+    <input type="radio"  id="two1" name="s" value="True" checked>
+    <label for="two1">Mandatory</label><br><br>
+    {% endif %}
+
+     {% if gh1.Chapter_Content_Is_mandatory == 0 %}
+    <input type="radio"  id="one1" name="s" value="False" checked>
+    <label for="one1">Supplementary</label><br>
+    <input type="radio"  id="two1" name="s" value="True">
+    <label for="two1">Mandatory</label><br><br>
+    {% endif %}
+
+    <input class="btn" type="submit" value="Submit">
+    <input class="btn" type="reset" value="Cancel">
+
+</form>
+</div>
+<div align="center">
+   <button type="submit" class="bttn" onclick="location.href='{% url 'content_add' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

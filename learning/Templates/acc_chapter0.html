@@ -1,0 +1,48 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select chapter</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+     <style>
+        .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+         input[type=text], select, textarea {
+          width: 20%;
+          padding: 12px;
+          font-size: 20px;
+          font-weight:bold;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+    </style>
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'img/books.png' %}" >
+    <div style="margin-top:200px;">
+        <form method="post" action="{% url 'acc_chapter1' %}">
+            <center>
+            {% csrf_token %}
+            <br><br>
+             <select name="cha">
+                    <option value="Nil" selected>Select chapter</option>
+                    {% for i in fd %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+             </select><br><br>
+            <input type="submit" class="btn" name="sb" value="Next">
+            <input type="reset" class="btn" name="sb1" value="Cancel">
+            </center>
+        </form>
+        <div align="center">
+             <button type="submit" class="bttn" onclick="location.href='{% url 'student_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>

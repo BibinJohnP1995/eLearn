@@ -1,0 +1,66 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'sama2.css' %}">
+    <style>
+        .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+</style>
+</head>
+<body class= "pic" background="{% static 'img/books.png' %}">
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<div align="left" style="font-weight:bold;">
+    <div align="right">
+       <h2 style="text-align:center; font-weight: bold;">COURSES</h2>
+    </div>
+     <div align="center">
+        <button type="submit" class="bttn" name="back" onclick="location.href='{% url 'admin_home' %}'" >Back</button
+    </div>
+    <br><br>
+    <table border="2px;" style="text-align:center; width:100%; font-weight:bold;">
+        <tr>
+            <th>Subject Name</th>
+            <th>Course Name</th>
+            <th>Course Briefing</th>
+            <th>Course Duration in Seconds</th>
+            <th>Chapter Numbers</th>
+            <th>Course Fee</th>
+            <th>Language of teaching</th>
+
+        </tr>
+        {% for a,b,c,d,e,f,g,h in hh %}
+        <tr>
+            <td>{{ b }}</td>
+            <td>{{ a }}</td>
+            <td>{{ c }}</td>
+            <td>{{ d }}</td>
+            <td>{{ e }}</td>
+            <td>{{ f }}</td>
+            <td>{{ g }}</td>
+            <td>
+                <button type="submit" class="btn" name="edit" onclick="location.href='{% url 'sub_edit_admin' h %}'" >Edit</button>
+            </td>
+            <td>
+                <button type="submit" class="bttn" name="delete" onclick="location.href='{% url 'sub_delete' h %}'" >Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,166 @@
+{% load static %}
+<html>
+<head>
+  <title>Marian College Kuttikkanam (Autonomous) | Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'sama.css' %}">
+  <link  rel="stylesheet" type="text/css" href="{% static 'layout.css'%}" media="all">
+
+
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <script>
+ {% if messages %}
+ {% for msg in messages %}
+     alert('{{msg}}');
+     {% endfor %}
+     {% endif %}
+     </script>
+<!-- MAIN (Center website) -->
+<div class="main">
+<!-- name of the company-->
+<h1 style="font-weight: bold;">Marian College Kuttikkanam (Autonomous) </h1>
+<hr>
+  <!--nav bar-->
+  <div class="wrapper row2">
+  <nav id="mainav" class="hoc clear" style="color:red;">
+    <!-- ################################################################################################ -->
+    <ul class="clear">
+      <li class="active"><a href="{% url 'home' %}">HOME</a></li>
+      <li><a href="{% url 'news' %}">NEWS</a></li>
+      <li><a href="{% url 'about_page' %}">ABOUT</a></li>
+      <li><a class="drop" href="#">BLOGS</a>
+        <ul>
+          <li><a href="{% url 'add_blog' %}">add</a></li>
+          <li><a href="{% url 'display_blog' %}">view</a></li>
+        </ul>
+      </li>
+      <li><a href="{% url 'contact' %}">CONTACT</a></li>
+
+      <li><a class="drop" href="#">SUBJECTS</a>
+        <ul>
+          {% for i in sd %}
+          <li><a>{{i}}</a></li>
+          {% endfor %}
+        </ul>
+
+      <li><a href="{% url 'login' %}">LOGIN</a></li>
+      <li><a class="drop" href="#">REGISTER</a>
+        <ul>
+          <li><a href="{% url 'register_student' %}">student</a> </li>
+          <li><a href="{% url 'register_teacher' %}">teacher</a> </li>
+          <li><a href="{% url 'register_admin' %}">admin</a> </li>
+        </ul>
+    </ul>
+    <!-- ################################################################################################ -->
+  </nav>
+</div>
+<br>
+
+<h2 style="font-weight: bold;"></h2>
+<!--Slide show images-->
+<div class="w3-content w3-section" style="max-width:1000px; border-width: 2px;">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school06.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school01.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school02.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school03.jpeg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school04.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school05.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school07.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school08.jpg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school09.jpeg' %}" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="{% static 'img/school10.jpg'%}" style="width:100%">
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 9000);    
+}
+</script>
+<!--slideshow end-->
+
+</div>
+<!-- END MAIN -->
+
+
+
+</div>
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</script>
+
+</body>
+</html>

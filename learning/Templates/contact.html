@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" href="{% static 'sama2.css' %}">
+      <style>
+        .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+      label{
+      font-weight:bold;
+      font-size:20px;
+      }
+       </style>
+
+</head>
+<body class= "pic" background="{% static 'img/books.png' %}">
+<div align="center">
+  <form method="post" action="{% url 'contact' %}" enctype="multipart/form-data">
+     {% csrf_token %}
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+      <h1>Contact Form</h1>
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name" placeholder="Your name.." required><br>
+    <label for="email">E mail</label><br>
+    <input type="email" id="email" name="email" placeholder="Your E mail.." required><br>
+    <label for="subject">Subject</label><br>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea><br>
+    <input type="submit" value="Submit">
+    <input type="submit" value="Cancel">
+  </form>
+  <br>
+  <div>
+      <button class="bttn" onclick="location.href='{% url 'home' %}'">Back</button>
+  </div>
+     </div>
+
+</body>
+</html>

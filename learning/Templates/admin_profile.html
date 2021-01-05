@@ -1,0 +1,53 @@
+{% load static %}
+<html lang="en">
+<head>
+     <link rel="stylesheet" type="text/css" href="{% static 'sama2.css' %}">
+    <style>
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+
+        .tdStyle
+            {
+                background-repeat:no-repeat;
+                background-size:cover;
+            }
+        label
+            { float: center; width: 10em; margin-right: 1em; }
+    </style>
+    <meta charset="UTF-8">
+    <title>Admin Profile</title>
+    <!--<link rel="stylesheet" type="text/css" href={% static 'trt.css' %}>-->
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"  enctype="multipart/form-data"-->
+<body class="tdStyle"  background="{% static 'img/books.png' %}">
+<center>
+<form method="post" action="{% url 'admin_profile' %}" >
+    {% csrf_token %}
+
+    <div align="center">
+        <h1>Admin Profile</h1>
+                <label for="first_name"><b>Firstname</b></label><br><br>
+                <input type="text" size="25" name="first_name" value="{{dc.First_name}}" style="width:30%;" required><br><br>
+                <label for="last_name"><b>Lastname</b></label><br><br>
+                <input type="text" size="25" name="last_name"  value="{{dc.Last_name}}" style="width:30%;" required><br><br>
+                <label for="photo"><b>Photo</b></label><br><br>
+                <img src="/media/{{dc.Image}}" width="80"><br><br>
+                <!--<input type="file" size="10" placeholder="Attach your recent photograph" name="photo" required><br><br>-->
+                <label for="email"><b>Email</b></label><br><br>
+                <input type="email" size="25"  name="email" value="{{dc.Email}}" style="width:30%; "required><br><br>
+                <!--<label><b>Username</b></label>&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="text" placeholder="Enter Username" name="user_name" value=" " required><br>
+                <label for="psw"><b>Password</b></label><br><br>
+                <input type="password" size="25" placeholder="Enter password" name="psw" required><br><br>-->
+                <input type="hidden"  name="adminn1" value="admin">
+
+            <button type="submit" class="button">Update</button>
+            <button type="reset" class="button">Cancel</button><br>
+    </div>
+        </form>
+        <div>
+            <button type="submit" class="bttn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+        </div>
+</center>
+</body>
+</html>

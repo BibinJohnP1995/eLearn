@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter edit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+      <style>
+    .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+
+      input[type=text], select, textarea {
+      width: 30%;
+      padding: 12px;
+      font-size: 20px;
+      font-weight:bold;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+
+      input[type=number], select, textarea {
+      width: 30%;
+      padding: 12px;
+      font-size: 20px;
+      font-weight:bold;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    </style>
+</head>
+<body class= "pic" background="{% static 'img/books.png' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_chapter_ad' gh.Subject_title gh.Course_title gh.Chapter_title ftf.Email gh.id %}">
+    {% csrf_token %}
+    <br><br><h2><b>CHAPTER EDIT</b></h2><br>
+    <input type="hidden" value="{{gh.Subject_title}}" name="sub">
+    <input type="hidden" value="{{gh.Course_title}}" name="cou">
+    <h3>Chapter title</h3><br>
+    <input type="text" value="{{gh.Chapter_title}}" name="c_tt"><br><br>
+    <h3>Number of assignments included</h3><br>
+    <input type="number" value="{{gh.Num_of_assignments}}" name="n_s"><br><br>
+    <input type="submit" class="btn" value="Submit">
+    <input type="reset" class="btn" value="Cancel">
+</form>
+</div>
+<div align="center">
+   <button type="submit" class="bttn" onclick="location.href='{% url 'chapter_add' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

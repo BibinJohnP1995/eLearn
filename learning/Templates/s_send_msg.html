@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send message</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+    <style>
+        .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+              input[type=text], select , textarea{
+              width: 30%;
+              padding: 12px;
+              font-size: 15px;
+              font-weight:bold;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              margin-top: 6px;
+              margin-bottom: 16px;
+              resize: vertical;
+            }
+    </style>
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'img/books.png' %}" >
+    <div  class="cen" align="center">
+        <form method="post" action="{% url 's_send_msg' %}">
+            {% csrf_token %}
+             <br><br>
+            <h2>SEND MESSAGE</h2>
+            <br>
+             <select name="to_em">
+                    <option value="Nil" selected>To email</option>
+                    {% for i in kk %}
+                        <option value="{{i.Email}} {{i.User_role}} {{i.First_name}} {{i.Last_name}}">{{i.Email}}, Category - {{i.User_role}}</option>
+                    {% endfor %}
+             </select><br><br>
+            <textarea cols="50" rows="4" name="msg_cont"></textarea><br><br>
+            <input type="submit" class="btn" name="sb" value="Send">
+            <input type="reset" class="btn" name="sb1" value="Cancel">
+        </form>
+        <div>
+             <button type="submit" class="bttn" onclick="location.href='{% url 'student_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>

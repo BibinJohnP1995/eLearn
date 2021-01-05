@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule test</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+    <style>
+
+        .btn
+            {background-color:  #4CAF50;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+        .bttn
+            {background-color: #FF0000;  color: white;  padding: 12px 20px;  border: none;  border-radius: 4px;  cursor: pointer;  align:center;}
+
+               input[type=text], select, textarea {
+          width: 20%;
+          padding: 12px;
+          font-size: 20px;
+          font-weight:bold;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+
+    </style>
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'img/books.png' %}"  >
+    <div  class="cen" align="center">
+        <h2 style="font-weight:bold;">ADD QUESTION</h2>
+        <form method="post" action="{% url 'schedule_test2' %}">
+            {% csrf_token %}
+            <br><br>
+            <h3>Question</h3> <textarea name="ques" cols="50" rows="4"></textarea><br><br>
+             <h3>Option 1</h3> <textarea name="op1" cols="50" rows="4"></textarea><br><br>
+            <h3>Option 2</h3> <textarea name="op2" cols="50" rows="4"></textarea><br><br>
+            <h3>Option 3</h3> <textarea name="op3" cols="50" rows="4"></textarea><br><br>
+            <h3>Correct answer</h3><textarea name="ans" cols="50" rows="4"></textarea><br><br>
+                <button type="submit" class="btn">Add next question/options</button><br><br>
+
+        </form>
+        <div>
+             <button type="submit" class="bttn" onclick="location.href='{% url 'teacher_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>
